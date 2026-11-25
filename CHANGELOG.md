@@ -1,0 +1,51 @@
+# Changelog
+
+## Unreleased
+
+- Removed the GitHub Actions workflow at the repository owner's request. Public checks remain available as manual Make targets.
+
+- Authored the Make command surface, isolated k3d lifecycle controller, Orders API and PostgreSQL baseline, observability provisioning, all 12 scenario flows, student/instructor materials, and static and unit checks. A GitHub Actions workflow was initially authored and later removed at the repository owner's request.
+- Added Kibana Lens time-series objects for request volume, 5xx responses, and indexed events, with dashboard references and static catalog checks.
+- Changed unmeasured CPU, RAM, and disk estimates from preflight rejection gates to visible advisories.
+- Extended the maintainer suite to check generated-order persistence across repeated up and every lab reset, plus log-history retention after all trials. Persistence requests use the controller's identity-checked lab-Service port-forward.
+- Extended `make doctor` to check that Kibana imported the incident dashboard and its three Lens chart references.
+- Extended `make doctor` to check all four imported Kibana saved searches, with an unrun source contract for the check.
+- Added fail-closed teardown recovery for interrupted cluster creation: clean known private files when no cluster exists, re-establish recorded node ownership before deleting a complete cluster, and allow partial cleanup only when the private kubeconfig and every visible node match the owner token.
+- Extended `make doctor` to check both provisioned Grafana dashboards through its API.
+- Added a `make doctor` check for all four loaded Prometheus alert rules; alert firing thresholds remain uncalibrated.
+- Updated the pinned contributor PyYAML version to 6.0.4 after checking its CPython 3.14 wheel availability on PyPI; dependency installation remains untested.
+- Added source validation and a static contract requiring exact direct Python pins and matching API/controller Python versions. Transitive dependency locking remains a release gap.
+- Extended source validation and its unrun contract to reject duplicate normalized package names in either exact-pinned Python requirement file.
+- Added an unrun catalog/suite alignment contract requiring all 12 ordered scenario IDs, two suite passes, and failed verification before repair for each scenario.
+- Expanded the host and public-release protocols to cover every public Make target, including URLs/catalog/status/diagnostics, and to review diagnostic output before sharing.
+- Added the pinned Python dependency installation command to the clean-host release protocol before lint, validation, and test targets.
+- Replaced drifting k3d `stable` compatibility links with v5.9.0-specific references for requirements, config, node labels, kubeconfig flags, and version output.
+- Added an unrun static contract tying those k3d compatibility references to the selected v5.9.0 pin.
+- Redacted the blind capstone ID, title, and selected worker from public lifecycle status and diagnostics, and limited status output to an explicit safe-field allowlist; aligned PRD, architecture, student/instructor guidance, and unrun state-view/catalog contracts.
+- Hid the blind capstone's numeric ID in the public `lab-list` output and added an unrun formatting/wiring contract.
+- Tightened readiness and scheduling scenario activation to require the expected injected fault plus healthy old replicas/endpoints; added unrun predicate coverage and aligned instructor/catalog notes.
+- Tightened additional scenario detectors to confirm the exact Service selector, DB host, ingress host, v2 failure rate, delay, memory limit/allocation, Fluent Bit output, and Prometheus scrape settings; added unrun predicate contracts.
+- Tightened recovery checks to require baseline API, memory, logging, and metrics configuration to be restored, not only healthy responses.
+- Lab 04 recovery now requires the canonical Ingress host/path/backend rule as well as healthy ingress and direct-Service probes; added an unrun predicate contract.
+- Tightened recovery for Labs 05–09 and 12 to require exact baseline fault settings and worker placement; `make up` now refuses to reconcile a cluster in the deleting state.
+- Labs 03, 06, and 07 now wait for API rollout and baseline replicas before accepting recovery traffic; Lab 10 waits for the Fluent Bit DaemonSet rollout before checking fresh ingestion.
+- Added a bounded parameterized Orders SKU filter and changed suite persistence checks to query the exact new sentinel instead of searching only the oldest page.
+- Corrected the instructor answer key to distinguish automated scenario controls from independent checks that remain instructor-led.
+- Corrected architecture directions for Prometheus scrapes and Grafana/Kibana queries, and documented the fixed loopback ports from the cluster configuration.
+- Lab 03 activation now requires the single PostgreSQL pod to be Ready, adding a database-health negative control to the DNS fault detector.
+- Added dedicated-context server-side dry-run validation before baseline, reset, repair, and declarative scenario mutations; `make validate` now checks local Kustomize resource and generator-file references.
+- Normalize PostgreSQL order timestamps to UTC `Z` form in both API response paths, independent of the database session timezone; added an unrun unit contract.
+- Made Lab 12 recovery wait for rollout completion after worker uncordon before checking replica spread.
+- Tightened Lab 12 pre-drain safety: require the healthy API/endpoints baseline, successful liveness and Orders requests, exactly two Ready schedulable lab workers, and one Ready API replica on each before cordon/drain; added unrun regression contracts and updated instructor materials.
+- Made `make preflight` enforce the exact pinned k3d, kubectl, and Python versions and made `make validate` check those controller pins against `versions.yaml`; version-output and ordering contracts are authored but unrun.
+- Cluster identity now requires exactly the three expected nodes and the pinned K3s kubelet version; confirmed-owner teardown may remove a stale-version cluster. Added unrun version/identity contracts and documented the expected Kubernetes node status field.
+- Lifecycle state parsing now rejects valid non-object JSON and invalid text with an actionable controller error instead of leaking an attribute/decoder exception; added an unrun state contract.
+- Clarified exact README host-tool prerequisites enforced by preflight and distinguished the in-cluster K3s node image from host-installed tools; Docker version and platform support remain unverified.
+- Added k3d's documented Docker Engine 20.10.5 minimum to preflight and linked the README prerequisites to official installation/release pages; this compatibility threshold is not a tested support baseline.
+- Clarified teardown's retained absent-state record and mutation lock, and updated the blind-capstone instructor procedure to source its private UTC window without exposing the scenario ID.
+- Rechecked the upstream k3d release and security report: v5.9.0 remains listed as latest and the open issue includes two additional reported findings; owner review remains required before publication.
+- Labeled the abbreviated Code of Conduct as a draft proposal rather than claiming the repository has adopted Contributor Covenant 2.1; linked the complete upstream policy and recorded adoption/contact as owner decisions.
+- Labeled the security response document as a draft because no private reporting channel or response timeline is configured; added the required owner action before publication.
+- Documented Fluent Bit's read-only k3d node log mounts, writable tail database path, and read-only Kubernetes RBAC; added an unrun manifest/documentation contract.
+- Expanded `make help` to list all declared public targets, including validation and integration targets.
+- No project commands or tests were executed during authoring. Runtime validation, classroom trial, host measurements, and release approval remain pending.

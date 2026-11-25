@@ -1,0 +1,17 @@
+{
+  "id": null,
+  "uid": "kubernetes-health",
+  "title": "Kubernetes Health",
+  "schemaVersion": 39,
+  "version": 1,
+  "refresh": "15s",
+  "time": {"from": "now-30m", "to": "now"},
+  "panels": [
+    {"id": 1, "type": "timeseries", "title": "Ready API replicas", "datasource": {"type": "prometheus", "uid": "prometheus"}, "targets": [{"expr": "kube_deployment_status_replicas_ready{namespace=\"lab\",deployment=\"orders-api\"}", "legendFormat": "ready"}, {"expr": "kube_deployment_spec_replicas{namespace=\"lab\",deployment=\"orders-api\"}", "legendFormat": "desired"}], "gridPos": {"h": 8, "w": 12, "x": 0, "y": 0}},
+    {"id": 2, "type": "timeseries", "title": "Container restarts", "datasource": {"type": "prometheus", "uid": "prometheus"}, "targets": [{"expr": "sum by (pod) (increase(kube_pod_container_status_restarts_total{namespace=\"lab\"}[5m]))", "legendFormat": "{{pod}}"}], "gridPos": {"h": 8, "w": 12, "x": 12, "y": 0}},
+    {"id": 3, "type": "timeseries", "title": "Pending pods", "datasource": {"type": "prometheus", "uid": "prometheus"}, "targets": [{"expr": "sum(kube_pod_status_phase{namespace=\"lab\",phase=\"Pending\"})"}], "gridPos": {"h": 8, "w": 12, "x": 0, "y": 8}},
+    {"id": 4, "type": "timeseries", "title": "Node readiness", "datasource": {"type": "prometheus", "uid": "prometheus"}, "targets": [{"expr": "kube_node_status_condition{condition=\"Ready\",status=\"true\"}", "legendFormat": "{{node}}"}], "gridPos": {"h": 8, "w": 12, "x": 12, "y": 8}},
+    {"id": 5, "type": "timeseries", "title": "API CPU vs requests", "datasource": {"type": "prometheus", "uid": "prometheus"}, "targets": [{"expr": "sum by (pod) (rate(container_cpu_usage_seconds_total{namespace=\"lab\",container=\"api\"}[5m]))", "legendFormat": "usage {{pod}}"}, {"expr": "sum by (pod) (kube_pod_container_resource_requests{namespace=\"lab\",container=\"api\",resource=\"cpu\"})", "legendFormat": "request {{pod}}"}], "gridPos": {"h": 8, "w": 12, "x": 0, "y": 16}},
+    {"id": 6, "type": "timeseries", "title": "API memory vs requests", "datasource": {"type": "prometheus", "uid": "prometheus"}, "targets": [{"expr": "sum by (pod) (container_memory_working_set_bytes{namespace=\"lab\",container=\"api\"})", "legendFormat": "usage {{pod}}"}, {"expr": "sum by (pod) (kube_pod_container_resource_requests{namespace=\"lab\",container=\"api\",resource=\"memory\"})", "legendFormat": "request {{pod}}"}], "gridPos": {"h": 8, "w": 12, "x": 12, "y": 16}}
+  ]
+}

@@ -1,0 +1,14 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: {name: lab-traffic, namespace: lab}
+spec:
+  replicas: 1
+  selector: {matchLabels: {app: lab-traffic}}
+  template:
+    metadata: {labels: {app: lab-traffic}}
+    spec:
+      containers:
+        - name: traffic
+          image: k3s-devops-lab/orders-api:dev
+          command: [python, /srv/traffic.py, --requests, "10000", --seed, "202501"]
+          resources: {requests: {cpu: 25m, memory: 32Mi}, limits: {cpu: 200m, memory: 96Mi}}

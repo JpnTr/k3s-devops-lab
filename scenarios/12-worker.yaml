@@ -1,0 +1,5 @@
+# Lab 12 is an imperative, recorded node operation. The runner must choose only
+# a verified k3d worker, save its exact name, and always uncordon during reset.
+kind: LabOperation
+apiVersion: lab.k3s-devops.invalid/v1
+metadata: {id: '12', operation: cordon-and-drain-one-worker}

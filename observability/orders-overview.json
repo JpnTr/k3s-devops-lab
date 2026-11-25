@@ -1,0 +1,22 @@
+{
+  "id": null,
+  "uid": "orders-api-overview",
+  "title": "API Overview",
+  "schemaVersion": 39,
+  "version": 1,
+  "refresh": "10s",
+  "time": {"from": "now-15m", "to": "now"},
+  "templating": {"list": [
+    {"name": "route", "type": "query", "label": "Route", "datasource": {"type": "prometheus", "uid": "prometheus"}, "query": "label_values(orders_http_requests_total, route)", "includeAll": true, "allValue": ".*", "current": {"text": "All", "value": "$__all"}},
+    {"name": "pod", "type": "query", "label": "Pod", "datasource": {"type": "prometheus", "uid": "prometheus"}, "query": "label_values(orders_http_requests_total, pod)", "includeAll": true, "allValue": ".*", "current": {"text": "All", "value": "$__all"}},
+    {"name": "version", "type": "query", "label": "Version", "datasource": {"type": "prometheus", "uid": "prometheus"}, "query": "label_values(orders_http_requests_total, version)", "includeAll": true, "allValue": ".*", "current": {"text": "All", "value": "$__all"}}
+  ]},
+  "panels": [
+    {"id": 1, "type": "timeseries", "title": "Request rate by status", "datasource": {"type": "prometheus", "uid": "prometheus"}, "targets": [{"expr": "sum by (status) (rate(orders_http_requests_total{route=~\"$route\",pod=~\"$pod\",version=~\"$version\"}[1m]))", "legendFormat": "{{status}}"}], "gridPos": {"h": 8, "w": 12, "x": 0, "y": 0}},
+    {"id": 2, "type": "timeseries", "title": "p95 latency by route", "datasource": {"type": "prometheus", "uid": "prometheus"}, "targets": [{"expr": "histogram_quantile(0.95, sum by (le,route) (rate(orders_http_request_duration_seconds_bucket{route=~\"$route\",version=~\"$version\"}[5m])))", "legendFormat": "{{route}}"}], "gridPos": {"h": 8, "w": 12, "x": 12, "y": 0}},
+    {"id": 3, "type": "timeseries", "title": "Database pool use", "datasource": {"type": "prometheus", "uid": "prometheus"}, "targets": [{"expr": "orders_db_pool_in_use{pod=~\"$pod\",version=~\"$version\"}", "legendFormat": "in use {{pod}}"}, {"expr": "orders_db_pool_capacity{pod=~\"$pod\",version=~\"$version\"}", "legendFormat": "capacity {{pod}}"}], "gridPos": {"h": 8, "w": 12, "x": 0, "y": 8}},
+    {"id": 4, "type": "timeseries", "title": "Pool timeouts", "datasource": {"type": "prometheus", "uid": "prometheus"}, "targets": [{"expr": "rate(orders_db_pool_timeouts_total{pod=~\"$pod\",version=~\"$version\"}[1m])", "legendFormat": "{{pod}}"}], "gridPos": {"h": 8, "w": 12, "x": 12, "y": 8}},
+    {"id": 5, "type": "timeseries", "title": "p50 latency", "datasource": {"type": "prometheus", "uid": "prometheus"}, "targets": [{"expr": "histogram_quantile(0.50, sum by (le,route) (rate(orders_http_request_duration_seconds_bucket{route=~\"$route\",version=~\"$version\"}[5m])))", "legendFormat": "{{route}}"}], "gridPos": {"h": 8, "w": 12, "x": 0, "y": 16}},
+    {"id": 6, "type": "timeseries", "title": "p99 latency", "datasource": {"type": "prometheus", "uid": "prometheus"}, "targets": [{"expr": "histogram_quantile(0.99, sum by (le,route) (rate(orders_http_request_duration_seconds_bucket{route=~\"$route\",version=~\"$version\"}[5m])))", "legendFormat": "{{route}}"}], "gridPos": {"h": 8, "w": 12, "x": 12, "y": 16}}
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "index_patterns": ["orders-logs-*"],
+  "template": {
+    "settings": {"number_of_shards": 1, "number_of_replicas": 0, "index.lifecycle.name": "orders-logs-retention"},
+    "mappings": {"properties": {
+      "@timestamp": {"type": "date"},
+      "service.name": {"type": "keyword"},
+      "service.version": {"type": "keyword"},
+      "log.level": {"type": "keyword"},
+      "http.response.status_code": {"type": "integer"},
+      "url.path": {"type": "keyword"},
+      "event.duration": {"type": "long"},
+      "error.type": {"type": "keyword"},
+      "http.request.id": {"type": "keyword"},
+      "kubernetes.namespace_name": {"type": "keyword"},
+      "kubernetes.pod_name": {"type": "keyword"},
+      "message": {"type": "text"}
+    }}
+  }
+}

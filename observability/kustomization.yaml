@@ -1,0 +1,24 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: observability
+resources:
+  - stack.yaml
+  - fluent-bit-daemonset.yaml
+  - kibana-bootstrap.yaml
+configMapGenerator:
+  - name: prometheus-config
+    files: [prometheus.yml, rules.yml]
+  - name: grafana-datasource
+    files: [grafana-datasources.yaml]
+  - name: grafana-dashboard-provider
+    files: [provider.yaml]
+  - name: grafana-dashboard
+    files: [orders-overview.json, kubernetes-health.json]
+  - name: fluent-bit-config
+    files: [fluent-bit.conf]
+  - name: fluent-bit-parsers
+    files: [fluent-bit-parsers.conf]
+  - name: kibana-objects
+    files: [kibana-objects.ndjson, index-template.json, es-ilm.json]
+generatorOptions:
+  disableNameSuffixHash: true

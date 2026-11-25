@@ -1,0 +1,3 @@
+# Contributing
+
+Contributions should include the learner brief, progressive hints, scoped reversible fault, symptom detector, independent recovery verifier, reset coverage, and evidence from two consecutive runs on a reused cluster. Run the applicable public Make targets before opening a pull request and include exact commands, versions, architecture, and results. Do not include kubeconfigs, credentials, personal data, dependency binaries, or raw diagnostics. Keep all fault operations restricted to the dedicated local lab cluster. See [security policy](SECURITY.md) and [testing guide](docs/testing.md).

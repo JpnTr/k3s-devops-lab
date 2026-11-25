@@ -1,0 +1,14 @@
+name: Bug report
+description: Report a reproducible lab problem
+body:
+  - type: input
+    id: versions
+    attributes: {label: Versions and host architecture, description: Include Docker Engine/Desktop, k3d, K3s, kubectl, Python, Make, OS release, and architecture.}
+    validations: {required: true}
+  - type: textarea
+    id: steps
+    attributes: {label: Reproduction, description: Exact commands and sanitized output.}
+    validations: {required: true}
+  - type: textarea
+    id: diagnostics
+    attributes: {label: Sanitized diagnostics, description: Remove credentials, kubeconfigs, host identifiers, and personal data.}

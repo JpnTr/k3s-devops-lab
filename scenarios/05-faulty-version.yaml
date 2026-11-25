@@ -1,0 +1,12 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: {name: orders-api, namespace: lab}
+spec:
+  template:
+    metadata: {labels: {app.kubernetes.io/version: v2}}
+    spec:
+      containers:
+        - name: api
+          env:
+            - {name: APP_VERSION, value: v2}
+            - {name: FAULT_FAIL_PERCENT, value: "35"}

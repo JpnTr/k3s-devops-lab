@@ -1,0 +1,147 @@
+schema: 1
+catalog:
+  - id: '01'
+    title: Service has no endpoints
+    level: beginner
+    max_minutes: 10
+    prerequisites: [healthy-baseline, kubectl, HTTP]
+    fault: scenarios/01-service.yaml
+    student: docs/student/01-service-endpoints.md
+    instructor: docs/instructor/answer-key.md#01-service-endpoints
+    detector: scripts/lab.py:detect
+    verifier: scripts/lab.py:verify_recovery
+    reset: scripts/lab.py:lab_reset
+    automated_suite: scripts/lab_suite.py
+  - id: '02'
+    title: Readiness path mismatch
+    level: beginner
+    max_minutes: 10
+    prerequisites: [healthy-baseline, kubectl, rollout-basics]
+    fault: scenarios/02-readiness.yaml
+    student: docs/student/02-readiness.md
+    instructor: docs/instructor/answer-key.md#02-readiness-rollout
+    detector: scripts/lab.py:detect
+    verifier: scripts/lab.py:verify_recovery
+    reset: scripts/lab.py:lab_reset
+    automated_suite: scripts/lab_suite.py
+  - id: '03'
+    title: Database DNS failure
+    level: beginner
+    max_minutes: 10
+    prerequisites: [healthy-baseline, HTTP, service-DNS]
+    fault: scenarios/03-dns.yaml
+    student: docs/student/03-database-dns.md
+    instructor: docs/instructor/answer-key.md#03-database-dns
+    detector: scripts/lab.py:detect
+    verifier: scripts/lab.py:verify_recovery
+    reset: scripts/lab.py:lab_reset
+    automated_suite: scripts/lab_suite.py
+  - id: '04'
+    title: Ingress host mismatch
+    level: beginner
+    max_minutes: 10
+    prerequisites: [healthy-baseline, HTTP, ingress]
+    fault: scenarios/04-ingress.yaml
+    student: docs/student/04-ingress-host.md
+    instructor: docs/instructor/answer-key.md#04-ingress-host
+    detector: scripts/lab.py:detect
+    verifier: scripts/lab.py:verify_recovery
+    reset: scripts/lab.py:lab_reset
+    automated_suite: scripts/lab_suite.py
+  - id: '05'
+    title: Faulty API version
+    level: intermediate
+    max_minutes: 15
+    prerequisites: [healthy-baseline, Grafana, Kibana, rollouts]
+    fault: scenarios/05-faulty-version.yaml
+    student: docs/student/05-faulty-version.md
+    instructor: docs/instructor/answer-key.md#05-faulty-version
+    detector: scripts/lab.py:detect
+    verifier: scripts/lab.py:verify_recovery
+    reset: scripts/lab.py:lab_reset
+    automated_suite: scripts/lab_suite.py
+  - id: '06'
+    title: Slow GET requests
+    level: intermediate
+    max_minutes: 15
+    prerequisites: [healthy-baseline, Grafana, Kibana, latency-baseline]
+    fault: scenarios/06-latency.yaml
+    student: docs/student/06-latency.md
+    instructor: docs/instructor/answer-key.md#06-latency
+    detector: scripts/lab.py:detect
+    verifier: scripts/lab.py:verify_recovery
+    reset: scripts/lab.py:lab_reset
+    automated_suite: scripts/lab_suite.py
+  - id: '07'
+    title: Database pool saturation
+    level: intermediate
+    max_minutes: 15
+    prerequisites: [healthy-baseline, Grafana, bounded-burst]
+    fault: scenarios/07-pool.yaml
+    student: docs/student/07-pool.md
+    instructor: docs/instructor/answer-key.md#07-pool-saturation
+    detector: scripts/lab.py:detect
+    verifier: scripts/lab.py:verify_recovery
+    reset: scripts/lab.py:lab_reset
+    automated_suite: scripts/lab_suite.py
+  - id: '08'
+    title: API memory pressure
+    level: intermediate
+    max_minutes: 15
+    prerequisites: [healthy-baseline, kubectl, container-resources]
+    fault: scenarios/08-memory.yaml
+    student: docs/student/08-memory.md
+    instructor: docs/instructor/answer-key.md#08-memory-pressure
+    detector: scripts/lab.py:detect
+    verifier: scripts/lab.py:verify_recovery
+    reset: scripts/lab.py:lab_reset
+    automated_suite: scripts/lab_suite.py
+  - id: '09'
+    title: Unschedulable rollout
+    level: intermediate
+    max_minutes: 10
+    prerequisites: [healthy-baseline, kubectl, scheduling]
+    fault: scenarios/09-scheduling.yaml
+    student: docs/student/09-scheduling.md
+    instructor: docs/instructor/answer-key.md#09-scheduling
+    detector: scripts/lab.py:detect
+    verifier: scripts/lab.py:verify_recovery
+    reset: scripts/lab.py:lab_reset
+    automated_suite: scripts/lab_suite.py
+  - id: '10'
+    title: Log collection stopped
+    level: intermediate
+    max_minutes: 15
+    prerequisites: [healthy-baseline, Kibana, container-logs]
+    fault: scenarios/10-logging.yaml
+    student: docs/student/10-logging.md
+    instructor: docs/instructor/answer-key.md#10-log-collection
+    detector: scripts/lab.py:detect
+    verifier: scripts/lab.py:verify_recovery
+    reset: scripts/lab.py:lab_reset
+    automated_suite: scripts/lab_suite.py
+  - id: '11'
+    title: Metrics scrape failure
+    level: intermediate
+    max_minutes: 15
+    prerequisites: [healthy-baseline, Prometheus, scrape-targets]
+    fault: scenarios/11-metrics.yaml
+    student: docs/student/11-metrics.md
+    instructor: docs/instructor/answer-key.md#11-metrics-scrape
+    detector: scripts/lab.py:detect
+    verifier: scripts/lab.py:verify_recovery
+    reset: scripts/lab.py:lab_reset
+    automated_suite: scripts/lab_suite.py
+  - id: '12'
+    title: Blind worker capstone
+    level: capstone
+    max_minutes: 20
+    prerequisites: [healthy-baseline, two-ready-replicas, eviction, scheduling]
+    fault: scenarios/12-worker.yaml
+    student: docs/student/blind-worker-capstone.md
+    instructor: docs/instructor/answer-key.md#12-worker-capstone-spoiler
+    detector: scripts/lab.py:detect
+    verifier: scripts/lab.py:verify_recovery
+    reset: scripts/lab.py:lab_reset
+    automated_suite: scripts/lab_suite.py
+# Durations are estimates for planning; no classroom trial has measured them.

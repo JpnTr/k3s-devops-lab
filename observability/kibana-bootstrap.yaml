@@ -1,0 +1,22 @@
+apiVersion: batch/v1
+kind: Job
+metadata: {name: kibana-bootstrap, namespace: observability}
+spec:
+  backoffLimit: 3
+  activeDeadlineSeconds: 300
+  template:
+    spec:
+      restartPolicy: OnFailure
+      containers:
+        - name: configure
+          image: curlimages/curl:8.17.0
+          command: [sh, -ec]
+          args:
+            - |
+              until curl -fsS http://elasticsearch:9200 >/dev/null; do sleep 2; done
+              curl -fsS -X PUT http://elasticsearch:9200/_ilm/policy/orders-logs-retention -H 'Content-Type: application/json' --data-binary @/assets/es-ilm.json
+              curl -fsS -X PUT http://elasticsearch:9200/_index_template/orders-logs -H 'Content-Type: application/json' --data-binary @/assets/index-template.json
+              until curl -fsS http://kibana:5601/api/status >/dev/null; do sleep 3; done
+              curl -fsS -X POST 'http://kibana:5601/api/saved_objects/_import?overwrite=true' -H 'kbn-xsrf: true' -F file=@/assets/kibana-objects.ndjson
+          volumeMounts: [{name: assets, mountPath: /assets, readOnly: true}]
+      volumes: [{name: assets, configMap: {name: kibana-objects}}]

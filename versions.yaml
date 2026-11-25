@@ -1,0 +1,21 @@
+# Pin image and tool versions here; change only with compatibility evidence.
+schema: 1
+platforms:
+  primary: linux/amd64
+tools:
+  k3d: v5.9.0
+  k3s: v1.36.6-k3s1
+  kubectl: v1.36.6
+images:
+  api: python:3.14.10-slim-bookworm
+  postgres: postgres:18.7-alpine
+  k3s-node: rancher/k3s:v1.36.6-k3s1
+  prometheus: prom/prometheus:v3.15.1
+  grafana: grafana/grafana:13.3.1
+  elasticsearch: docker.elastic.co/elasticsearch/elasticsearch:9.4.10
+  kibana: docker.elastic.co/kibana/kibana:9.4.10
+  fluent-bit: fluent/fluent-bit:5.1.5
+  kube-state-metrics: registry.k8s.io/kube-state-metrics/kube-state-metrics:v2.20.0
+  curl: curlimages/curl:8.17.0
+# Release/version records were checked against upstream source pages on 2026-11-25.
+# Registry manifests, runtime integration, image architectures and performance remain untested.
