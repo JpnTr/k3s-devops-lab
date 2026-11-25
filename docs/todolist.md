@@ -22,10 +22,10 @@ remain open until the corresponding public Make targets have actually passed.
   answer key, fault inputs, and two-pass integration runner. Still needs
   `make lab-suite` twice-per-scenario evidence and a review of diagnostics
   output in a real lab.
-- [ ] **M5: Public release candidate.** Draft release docs and community
-  templates exist. Still needs fresh-host and supported-platform checks,
-  classroom trial, measured resource and duration records, screenshots, and
-  repository-owner decisions about publication and license.
+- [ ] **M5: Public release candidate.** The public repository now exists.
+  Draft release docs and community templates exist. Still needs fresh-host and
+  supported-platform checks, classroom trial, measured resource and duration
+  records, screenshots, and the repository owner's license decision.
 
 ## Execution record
 
@@ -335,8 +335,20 @@ remain open until the corresponding public Make targets have actually passed.
 - Timing/resource proposals: catalog durations and host resource thresholds
   remain planning estimates; no measurements or classroom trial exist.
 - Concrete blockers: runtime checks require execution on a permitted host with
-  Docker, k3d, kubectl, and the pinned tools. Public release and license
-  ownership decisions remain with the repository owner.
+  Docker, k3d, kubectl, and the pinned tools. License ownership remains with
+  the repository owner.
+
+### 2026-11-25 — public repository creation and push
+
+- Commands actually run: `git init -b main`,
+  `gh repo create JpnTr/k3s-devops-lab --public --source . --remote origin`,
+  `git add -A`, `git commit -m "Implement K3s DevOps Lab"`, and
+  `git push -u origin main`.
+- Results: GitHub returned `https://github.com/JpnTr/k3s-devops-lab`; commit
+  `73fb4c1` was pushed to `main`, and the branch tracks `origin/main`.
+- No project checks, builds, dependency installs, Docker commands, or cluster
+  operations were run. The repository has no CI pipeline. Milestones remain
+  open pending their documented evidence.
 
 ## Required evidence to close milestones
 
