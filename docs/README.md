@@ -18,3 +18,7 @@ and [release requirements](public-release.md).
 - [Verification plan](testing.md), [milestone checklist and evidence](todolist.md),
   and [public release requirements](public-release.md)
 - [Known issues and validation state](bugs.md)
+
+The [checklist](todolist.md) also tracks proposed future features; they are
+backlog items until scope, acceptance criteria, implementation, documentation,
+and verification evidence are complete.

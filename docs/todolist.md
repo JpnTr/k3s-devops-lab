@@ -27,6 +27,33 @@ remain open until the corresponding public Make targets have actually passed.
   supported-platform checks, classroom trial, measured resource and duration
   records, screenshots, and the repository owner's license decision.
 
+## Future feature backlog
+
+These are planned discussions and are not implemented. Keep the current local
+k3d workflow as the supported baseline until a separate real-server profile is
+designed and validated.
+
+- [ ] **F1: K3s operations labs.** Add exercises for joining an agent,
+  diagnosing node health, draining/replacing a node, and practicing server or
+  datastore recovery. Define safe lab topology, reset behavior, and measurable
+  acceptance checks before implementation.
+- [ ] **F2: Infrastructure-as-code examples.** Add optional Terraform examples
+  for provisioning a small VM-based K3s cluster. Select the first target
+  environment after discussing learner needs; keep provider examples separate
+  and document cost, access, teardown, and supported versions.
+- [ ] **F3: Network and security labs.** Add guided exercises for firewall
+  rules, private API access, TLS, secrets, backups, and restore. Specify threat
+  boundaries and ensure every fault is reversible and isolated to lab-owned
+  resources.
+- [ ] **F4: Deployment comparison guide.** Explain differences between local
+  k3d and K3s on servers, including node lifecycle, networking, storage,
+  ingress/load balancers, costs, and failure modes. Link it from the docs
+  index and keep claims tied to the supported deployment profiles.
+
+Feature completion requires its acceptance criteria, affected technical docs,
+and actual verification evidence to be recorded here. Until then, leave the
+checkbox open and state any blockers.
+
 ## Execution record
 
 ### 2026-11-25 — source authoring only
@@ -349,6 +376,17 @@ remain open until the corresponding public Make targets have actually passed.
 - No project checks, builds, dependency installs, Docker commands, or cluster
   operations were run. The repository has no CI pipeline. Milestones remain
   open pending their documented evidence.
+
+### 2026-11-25 — bug/feature workflow and backlog
+
+- Updated `AGENTS.md`, `docs/rules.md`, `docs/bugs.md`, and the documentation
+  index with bug triage, bug-log updates, technical-document alignment,
+  verification evidence, and feature completion rules.
+- Added F1–F4 to this checklist: K3s operations labs, Terraform examples,
+  network/security labs, and a deployment comparison guide. All remain
+  proposed and unchecked; no implementation or acceptance review was done.
+- Reviewed the documentation diff with `git diff`. No project checks, tests,
+  builds, Docker, or cluster commands were run.
 
 ## Required evidence to close milestones
 
